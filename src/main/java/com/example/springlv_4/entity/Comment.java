@@ -37,4 +37,7 @@ public class Comment extends TimeStamped {
         this.user = user;
     }
 
+    public void setBody(String body) {
+        this.body = body;
+    }
 }
