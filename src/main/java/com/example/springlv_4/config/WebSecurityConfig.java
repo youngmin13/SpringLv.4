@@ -64,7 +64,7 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                 authorizeHttpRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // resources 접근 허용 설정
-                        .requestMatchers("/api/auth/**").permitAll() // '/api/auth/'로 시작하는 요청 모두 접근 허가 -> 이게 없으면 회원가입, 로그인을 할 수가 없음
+                        .requestMatchers("/api/user/**").permitAll() // '/api/auth/'로 시작하는 요청 모두 접근 허가 -> 이게 없으면 회원가입, 로그인을 할 수가 없음
                         .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll() // 'GET /api/posts'로 시작하는 요청 모두 접근 허가 -> 로그인하지 않아도 게시글 read 가능
                         .anyRequest().authenticated() // 그 외 모든 요청 인증처리
         );
