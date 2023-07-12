@@ -30,7 +30,7 @@ public class Post extends TimeStamped {
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     // 해당 게시글의 좋아요 숫자 합
     @Column(name = "likes", nullable = false)

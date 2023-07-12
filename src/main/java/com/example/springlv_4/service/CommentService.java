@@ -38,7 +38,7 @@ public class CommentService {
         );
 
         // 요청자가 운영자이거나 댓글 작성자(post.user) 와 요청자(user) 가 같은지 체크
-        if (!user.getRole().equals(UserRoleEnum.ADMIN) && !comment.getUser().equals(user)) {
+        if (!(user.getRole().equals(UserRoleEnum.ADMIN) || comment.getUser().equals(user))) {
             // 아니면 exception throw 해서 controller에서 처리
             throw new RejectedExecutionException();
         }
@@ -55,7 +55,7 @@ public class CommentService {
         );
 
         // 요청자가 운영자이거나 댓글 작성자(post.user) 와 요청자(user) 가 같은지 체크
-        if (!user.getRole().equals(UserRoleEnum.ADMIN) && !comment.getUser().equals(user)) {
+        if (!(user.getRole().equals(UserRoleEnum.ADMIN) || comment.getUser().equals(user))) {
             // 아니면 exception throw 해서 controller에서 처리
             throw new RejectedExecutionException();
         }

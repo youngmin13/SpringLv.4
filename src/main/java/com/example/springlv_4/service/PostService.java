@@ -25,7 +25,6 @@ public class PostService {
         Post post = new Post (requestDto);
         // 유저 정보 set
         post.setUser(user);
-
         // 저장
         postRepository.save(post);
 
@@ -54,7 +53,7 @@ public class PostService {
         Post post = findPostById(id);
         
         // 관리자가 아니거나 게시글을 작성한 유저가 아니면
-        if (!user.getRole().equals(UserRoleEnum.ADMIN) || post.getUser().equals(user)) {
+        if (!(user.getRole().equals(UserRoleEnum.ADMIN) || post.getUser().equals(user))) {
             throw new RejectedExecutionException();
         }
 
@@ -70,7 +69,7 @@ public class PostService {
         Post post = findPostById(id);
 
         // 관리자가 아니거나 게시글을 작성한 유저가 아니면
-        if (!user.getRole().equals(UserRoleEnum.ADMIN) || post.getUser().equals(user)) {
+        if (!(user.getRole().equals(UserRoleEnum.ADMIN) || post.getUser().equals(user))) {
             throw new RejectedExecutionException();
         }
 

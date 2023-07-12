@@ -34,7 +34,7 @@ public class LikesService {
         );
 
         // 현재 사용자가 해당 게시글에 좋아요를 체크했는지 확인해야한다.
-        Optional<Likes> isUserCheckPostLikeBefore = likesRepository.findByPostAndUser(id, user.getId());
+        Optional<Likes> isUserCheckPostLikeBefore = likesRepository.findByPostAndUser(post, user);
 
         // 좋아요 체크가 되어있지 않은 상태라면
         if (!isUserCheckPostLikeBefore.isPresent()) {
@@ -58,7 +58,7 @@ public class LikesService {
         );
 
         // 현재 사용자가 해당 게시글에 좋아요를 체크했는지 확인해야한다.
-        Optional<Likes> isUserCheckCommentLikeBefore = likesRepository.findByCommentAndUser(id, user.getId());
+        Optional<Likes> isUserCheckCommentLikeBefore = likesRepository.findByCommentAndUser(comment, user);
 
         // 좋아요 체크가 되어있지 않은 상태라면
         if (!isUserCheckCommentLikeBefore.isPresent()) {

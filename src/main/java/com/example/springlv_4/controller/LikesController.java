@@ -4,7 +4,6 @@ import com.example.springlv_4.dto.ApiResponseDto;
 import com.example.springlv_4.security.UserDetailsImpl;
 import com.example.springlv_4.service.LikesService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;

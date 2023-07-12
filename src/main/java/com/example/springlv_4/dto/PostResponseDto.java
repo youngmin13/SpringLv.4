@@ -18,6 +18,7 @@ public class PostResponseDto extends ApiResponseDto {
     private LocalDateTime modifiedAt;
     private String username;
     private List<CommentResponseDto> comments;
+    private int likeCount;
 
     public PostResponseDto(Post post) {
         this.id = post.getId();
@@ -30,5 +31,6 @@ public class PostResponseDto extends ApiResponseDto {
                 .map(CommentResponseDto::new)
                 .sorted(Comparator.comparing(CommentResponseDto::getCreatedAt).reversed())
                 .toList();
+        this.likeCount = post.getLikeCount();
     }
 }
