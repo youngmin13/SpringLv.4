@@ -1,8 +1,13 @@
 package com.example.springlv_4.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,8 +27,15 @@ public class Comment extends TimeStamped {
     private Post post;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
+
+    @Column(nullable = false)
+    private int likeCount = 0;
+
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.REMOVE)
+    private List<Likes> likesList = new ArrayList<>();
 
     public Comment (String body) {
         this.body = body;
@@ -40,4 +52,12 @@ public class Comment extends TimeStamped {
     public void setBody(String body) {
         this.body = body;
     }
+
+    public void increaseLikeCount(){
+        this.likeCount++;    }
+
+    public void decreaseLikeCount(){
+        this.likeCount--;
+    }
+
 }
