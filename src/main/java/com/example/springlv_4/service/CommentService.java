@@ -40,7 +40,7 @@ public class CommentService {
         // 요청자가 운영자이거나 댓글 작성자(post.user) 와 요청자(user) 가 같은지 체크
         if (!(user.getRole().equals(UserRoleEnum.ADMIN) || comment.getUser().equals(user))) {
             // 아니면 exception throw 해서 controller에서 처리
-            throw new RejectedExecutionException();
+            throw new RejectedExecutionException("작성자만 수정 할 수 있습니다.");
         }
 
         // 해당 댓글 수정
@@ -57,7 +57,7 @@ public class CommentService {
         // 요청자가 운영자이거나 댓글 작성자(post.user) 와 요청자(user) 가 같은지 체크
         if (!(user.getRole().equals(UserRoleEnum.ADMIN) || comment.getUser().equals(user))) {
             // 아니면 exception throw 해서 controller에서 처리
-            throw new RejectedExecutionException();
+            throw new RejectedExecutionException("작성자만 수정 할 수 있습니다.");
         }
 
         commentRepository.delete(comment);

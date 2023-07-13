@@ -54,7 +54,7 @@ public class PostService {
         
         // 관리자가 아니거나 게시글을 작성한 유저가 아니면
         if (!(user.getRole().equals(UserRoleEnum.ADMIN) || post.getUser().equals(user))) {
-            throw new RejectedExecutionException();
+            throw new RejectedExecutionException("작성자만 수정 할 수 있습니다.");
         }
 
         // 게시글 제목 업데이트
@@ -70,7 +70,7 @@ public class PostService {
 
         // 관리자가 아니거나 게시글을 작성한 유저가 아니면
         if (!(user.getRole().equals(UserRoleEnum.ADMIN) || post.getUser().equals(user))) {
-            throw new RejectedExecutionException();
+            throw new RejectedExecutionException("작성자만 수정 할 수 있습니다.");
         }
 
         postRepository.delete(post);

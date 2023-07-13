@@ -63,8 +63,8 @@ public class JwtUtil {
         // 토큰 만료시간
         // 60분
         long TOKEN_TIME = 60 * 60 * 1000L;
-        return BEARER_PREFIX +
-                Jwts.builder()
+        return BEARER_PREFIX +  // Bearer 타입을 앞에 접두사로 추자
+                Jwts.builder()  // Jwt를 만드는 기능이라고 보면 될 듯
                         .setSubject(username) // 사용자 식별자값(ID) -> username으로 지정
                         .claim(AUTHORIZATION_KEY, role)
                         .setExpiration(new Date(date.getTime() + TOKEN_TIME)) // 만료 시간

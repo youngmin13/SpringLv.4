@@ -49,24 +49,15 @@ public class PostController {
 
     @PutMapping("/posts/{id}")
     public ResponseEntity<ApiResponseDto> updatePost (@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long id, @RequestBody PostRequestDto requestDto) {
-        try {
-            // 해당하는 글을 찾아서 업데이트하는 메서드
-            PostResponseDto responseDto = postService.updatePost(userDetails.getUser(), id, requestDto);
-            // 찾았으면 찾았으면 해당하는 http Status Code와 해당 게시글 리턴
-            return ResponseEntity.ok().body(responseDto);
-        } catch (RejectedExecutionException e) {
-            // 못찾았으면 postService의 updatePost에서 RejectedExecutionException 발생
-            return ResponseEntity.badRequest().body(new ApiResponseDto("작성자만 수정 할 수 있습니다.", HttpStatus.BAD_REQUEST.value()));
-        }
+        // 해당하는 글을 찾아서 업데이트하는 메서드
+        PostResponseDto responseDto = postService.updatePost(userDetails.getUser(), id, requestDto);
+        // 찾았으면 찾았으면 해당하는 http Status Code와 해당 게시글 리턴
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @DeleteMapping("/posts/{id}")
     public ResponseEntity<ApiResponseDto> deletePost (@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long id) {
-        try {
-            postService.deletePost(userDetails.getUser(), id);
-            return ResponseEntity.ok().body(new ApiResponseDto("해당하는 게시글을 삭제하였습니다.", HttpStatus.OK.value()));
-        } catch (RejectedExecutionException e) {
-            return ResponseEntity.badRequest().body(new ApiResponseDto("작성자만 삭제 할 수 있습니다.", HttpStatus.BAD_REQUEST.value()));
-        }
+        postService.deletePost(userDetails.getUser(), id);
+        return ResponseEntity.ok().body(new ApiResponseDto("해당하는 게시글을 삭제하였습니다.", HttpStatus.OK.value()));
     }
 }
